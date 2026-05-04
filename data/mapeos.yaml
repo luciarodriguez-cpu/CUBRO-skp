@@ -4,110 +4,110 @@
 
 # Campo D_Gama -> Opcion 100 (Gama del frente)
 gama:
-  "1": "LAC"   # Laca
-    "2": "WOD"   # Wood
-      "3": "LNO"   # Linoleum
-        "4": "LMI"   # Laminado
+  "1": "LAC"
+  "2": "WOD"
+  "3": "LNO"
+  "4": "LMI"
 
-        # Campo ColorFrente -> Opcion 101 (Acabado del frente)
-        color_frente:
-          # LACA
-            "Crema LACA": "CR6"
-              "Seda LACA": "SED"
-                "Blanco LACA": "BAO"
-                  "Petal LACA": "PEA"
-                    "Vela LACA": "VL6"
-                      "Marga LACA": "MAA"
-                        "Zafiro LACA": "ZAF"
-                          "Uva LACA": "UVA"
-                            "Noche LACA": "NOE"
-                              "Pino LACA": "PI6"
-                                "Halo LACA": "HAL"
-                                  "Grass LACA": "GRS"
-                                    "Laurel LACA": "LAU"
-                                      # WOOD
-                                        "Nordic Oak WOOD": "TCK"
-                                          "Oak WOOD": "TAK"
-                                            "Smoked Oak WOOD": "TNK"
-                                              # LINOLEUM
-                                                "Mushroom LINOLEUM": "IMH"
-                                                  "Macadamia LINOLEUM": "IMD"
-                                                    "Clay LINOLEUM": "ICY"
-                                                      "Walnut LINOLEUM": "IWL"
-                                                        "Espresso LINOLEUM": "IES"
-                                                          "Pistachio LINOLEUM": "IPI"
-                                                            "Olive LINOLEUM": "IOL"
-                                                              "Conifer LINOLEUM": "ICO"
-                                                                "Vapour LINOLEUM": "IVA"
-                                                                  "Blue Haze LINOLEUM": "IBH"
-                                                                    "Smokey Blue LINOLEUM": "IYB"
-                                                                      # LAMINADO
-                                                                        "Sable LAMINADO": "ASA"
-                                                                          "Agave LAMINADO": "AGV"
-                                                                            "Sombra LAMINADO": "ASO"
-                                                                              "Cloud LAMINADO": "ACU"
-                                                                                "Polar LAMINADO": "APA"
-                                                                                  "Mos LAMINADO": "AMS"
-                                                                                    "Ash LAMINADO": "AAS"
-                                                                                      "Saten LAMINADO": "AST"
-                                                                                        "Lirio LAMINADO": "AII"
-                                                                                          "Carbon LAMINADO": "ACB"
-                                                                                            "Metal LAMINADO": "AMT"
+# Campo ColorFrente -> Opcion 101 (Acabado del frente)
+color_frente:
+  # LACA
+  "Crema LACA": "CR6"
+  "Seda LACA": "SED"
+  "Blanco LACA": "BAO"
+  "Petal LACA": "PEA"
+  "Vela LACA": "VL6"
+  "Marga LACA": "MAA"
+  "Zafiro LACA": "ZAF"
+  "Uva LACA": "UVA"
+  "Noche LACA": "NOE"
+  "Pino LACA": "PI6"
+  "Halo LACA": "HAL"
+  "Grass LACA": "GRS"
+  "Laurel LACA": "LAU"
+  # WOOD
+  "Nordic Oak WOOD": "TCK"
+  "Oak WOOD": "TAK"
+  "Smoked Oak WOOD": "TNK"
+  # LINOLEUM
+  "Mushroom LINOLEUM": "IMH"
+  "Macadamia LINOLEUM": "IMD"
+  "Clay LINOLEUM": "ICY"
+  "Walnut LINOLEUM": "IWL"
+  "Espresso LINOLEUM": "IES"
+  "Pistachio LINOLEUM": "IPI"
+  "Olive LINOLEUM": "IOL"
+  "Conifer LINOLEUM": "ICO"
+  "Vapour LINOLEUM": "IVA"
+  "Blue Haze LINOLEUM": "IBH"
+  "Smokey Blue LINOLEUM": "IYB"
+  # LAMINADO
+  "Sable LAMINADO": "ASA"
+  "Agave LAMINADO": "AGV"
+  "Sombra LAMINADO": "ASO"
+  "Cloud LAMINADO": "ACU"
+  "Polar LAMINADO": "APA"
+  "Mos LAMINADO": "AMS"
+  "Ash LAMINADO": "AAS"
+  "Saten LAMINADO": "AST"
+  "Lirio LAMINADO": "AII"
+  "Carbon LAMINADO": "ACB"
+  "Metal LAMINADO": "AMT"
 
-                                                                                            # Campo Color del interior -> Opcion 200 (Color interior del mueble)
-                                                                                            color_interior:
-                                                                                              "Blanco mueble": "1CC"
-                                                                                                "Gris mueble": "2CC"
-                                                                                                  "Negro mueble": "3CC"
-                                                                                                    "Roble mueble": "4CC"
-                                                                                                    
-                                                                                                    # Campo Tirador -> Opcion 217 (Sistema de apertura)
-                                                                                                    # Solo aplica cuando el valor es 20 o 21
-                                                                                                    apertura:
-                                                                                                      "20": "TL1"   # Touch Latch
-                                                                                                        "21": "PS1"   # Prise de main
-                                                                                                        
-                                                                                                        # Campo Tirador -> Opcion 300 (Tipo de tirador)
-                                                                                                        # Cuando el valor NO es 20 ni 21
-                                                                                                        tirador:
-                                                                                                          "2": "ROU"    # Round
-                                                                                                            "3": "SQU"    # Square
-                                                                                                              "4": "Q2C"    # Curve horizontal — PENDIENTE confirmar distincion Q2C/Q2H
-                                                                                                                "5": "Q3C"    # Line horizontal — PENDIENTE confirmar distincion Q3C/Q3H
-                                                                                                                  "7": "Q1C"    # Plantea
-                                                                                                                    "20": "499"   # Sin tirador (Touch Latch)
-                                                                                                                      "21": "499"   # Sin tirador (Prise de main)
-                                                                                                                      
-                                                                                                                      # Campo Color tirador -> Opcion 301 (Color tirador integrado: Round y Square)
-                                                                                                                      color_tirador_superficie:
-                                                                                                                        "Inox": "IN7"
-                                                                                                                          "Brass": "BR6"
-                                                                                                                            "Blanco": "LB6"
-                                                                                                                              "Negro": "NE6"
-                                                                                                                                "Arena": "AR6"
-                                                                                                                                  "Brown": "BO6"
-                                                                                                                                  
-                                                                                                                                  # Campo Trasera -> Opcion 301 (Color tirador de superficie: Curve, Line, Plantea)
-                                                                                                                                  color_tirador_integrado:
-                                                                                                                                    "Crema": "CR6"
-                                                                                                                                      "Seda": "SED"
-                                                                                                                                        "Blanco": "BAO"
-                                                                                                                                          "Petal": "PEA"
-                                                                                                                                            "Vela": "VL6"
-                                                                                                                                              "Marga": "MAA"
-                                                                                                                                                "Zafiro": "ZAF"
-                                                                                                                                                  "Uva": "UVA"
-                                                                                                                                                    "Noche": "NOE"
-                                                                                                                                                      "Pino": "PI6"
-                                                                                                                                                        "Halo": "HAL"
-                                                                                                                                                          "Grass": "GRS"
-                                                                                                                                                            "Laurel": "LAU"
-                                                                                                                                                              "Nordic Oak": "NOK"
-                                                                                                                                                                "Oak": "OAK"
-                                                                                                                                                                  "Smoked Oak": "SMK"
-                                                                                                                                                                  
-                                                                                                                                                                  # Campo C_Rodapietext -> Opcion 402 (Altura de las patas)
-                                                                                                                                                                  patas:
-                                                                                                                                                                    "70 mm": "70"
-                                                                                                                                                                      "100 mm": "100"
-                                                                                                                                                                        "0 mm": "SPI"   # Sin patas
+# Campo Color del interior -> Opcion 200 (Color interior del mueble)
+color_interior:
+  "Blanco mueble": "1CC"
+  "Gris mueble": "2CC"
+  "Negro mueble": "3CC"
+  "Roble mueble": "4CC"
+
+# Campo Tirador -> Opcion 217 (Sistema de apertura)
+# Solo aplica cuando el valor es 20 o 21
+apertura:
+  "20": "TL1"
+  "21": "PS1"
+
+# Campo Tirador -> Opcion 300 (Tipo de tirador)
+# Cuando el valor NO es 20 ni 21
+tirador:
+  "2": "ROU"
+  "3": "SQU"
+  "4": "Q2C"   # PENDIENTE confirmar distincion Q2C/Q2H
+  "5": "Q3C"   # PENDIENTE confirmar distincion Q3C/Q3H
+  "7": "Q1C"
+  "20": "499"
+  "21": "499"
+
+# Campo Color tirador -> Opcion 301 (Tiradores integrados: Round y Square)
+color_tirador_superficie:
+  "Inox": "IN7"
+  "Brass": "BR6"
+  "Blanco": "LB6"
+  "Negro": "NE6"
+  "Arena": "AR6"
+  "Brown": "BO6"
+
+# Campo Trasera -> Opcion 301 (Tiradores de superficie: Curve, Line, Plantea)
+color_tirador_integrado:
+  "Crema": "CR6"
+  "Seda": "SED"
+  "Blanco": "BAO"
+  "Petal": "PEA"
+  "Vela": "VL6"
+  "Marga": "MAA"
+  "Zafiro": "ZAF"
+  "Uva": "UVA"
+  "Noche": "NOE"
+  "Pino": "PI6"
+  "Halo": "HAL"
+  "Grass": "GRS"
+  "Laurel": "LAU"
+  "Nordic Oak": "NOK"
+  "Oak": "OAK"
+  "Smoked Oak": "SMK"
+
+# Campo C_Rodapietext -> Opcion 402 (Altura de las patas)
+patas:
+  "70 mm": "70"
+  "100 mm": "100"
+  "0 mm": "SPI"
