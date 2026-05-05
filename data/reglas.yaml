@@ -1,12 +1,113 @@
-# reglas.yaml
-# Logica de opciones por codigo de mueble
-# SOLO LECTURA — no modificar sin actualizar tambien la documentacion en Notion
+# =============================================================================
+# data/reglas.yaml
+# Reglas y opciones por mueble — Módulo C — Mapeo y cálculo
+# SOLO LECTURA — no modificar sin actualizar también la documentación en Notion
 #
-# Estructura por mueble:
-#   forzadas: opciones que se calculan automaticamente (el usuario no las ve)
-#   facultativas: opciones que el usuario puede seleccionar en la interfaz
+# Estructura:
+#   reglas_condicionales: lógica de negocio que depende de condiciones
+#   muebles:             opciones forzadas y facultativas por código de mueble
 #
-# "auto" significa que el valor se calcula en modulo_c.py segun la logica de mapeos
+# Lógica de ejecución del Módulo C:
+#   1. Primero reglas_condicionales → determinan qué opciones calcular
+#   2. Después mapeos.yaml → convierten los valores a códigos SG
+#
+# "auto" = valor calculado en modulo_c.py según lógica de mapeos o reglas
+#
+# Pendientes:
+#   - op_300: Confirmar qué son Q2H y Q3H
+#   - op_231: Formato de entrega del valor final a SG pendiente IT SG
+# =============================================================================
+
+
+# =============================================================================
+# REGLAS CONDICIONALES
+# =============================================================================
+
+reglas_condicionales:
+
+  # ---------------------------------------------------------------------------
+  # op_121 — Mecanizado de frente (SPF)
+  # ---------------------------------------------------------------------------
+  op_121:
+    tiradores_sin_spf:
+      - "2"   # Round
+      - "3"   # Square
+      - "20"  # Touch Latch
+      - "21"  # Prise de main
+    tirador_spf_siempre:
+      - "7"   # Plantea
+    muebles_spf_forzado_line_curve:
+      - "AQC31P4520057"
+      - "AQC31P6020057"
+      - "AQC31P4522057"
+      - "AQC31P6022057"
+      - "AVA1P4520035"
+      - "AVA1P6020035"
+      - "AVA1P9020035"
+      - "AVA1P4520057"
+      - "AVA1P6020057"
+      - "AVA1P4522035"
+      - "AVA1P6022035"
+      - "AVA1P9022035"
+      - "AVA1P4522057"
+      - "AVA1P6022057"
+      - "A2I1P6020057"
+      - "A2I1P6022057"
+    tiradores_spf_forzado_monoporte:
+      - "4"   # Curve
+      - "5"   # Line
+
+  # ---------------------------------------------------------------------------
+  # op_301 — Color del tirador
+  # ---------------------------------------------------------------------------
+  op_301:
+    tiradores_integrados:
+      - "ROU"
+      - "SQU"
+    tiradores_superficie:
+      - "Q2C"
+      - "Q2H"
+      - "Q3C"
+      - "Q3H"
+      - "Q1C"
+    sin_tirador:
+      - "499"
+
+  # ---------------------------------------------------------------------------
+  # op_103 — Sentido de la veta
+  # ---------------------------------------------------------------------------
+  op_103:
+    gamas_con_veta:
+      - "WOD"
+    colores_con_veta:
+      - "Metal LAMINADO"
+
+  # ---------------------------------------------------------------------------
+  # op_104 — Acabado canto del frente
+  # ---------------------------------------------------------------------------
+  op_104:
+    por_gama:
+      "LAC": null   # mismo código que op_101
+      "WOD": ""
+      "LNO": "HAK"
+      "LMI": ""
+
+  # ---------------------------------------------------------------------------
+  # op_231 — Reducción de ancho
+  # Ver trigger y código en mapeos.yaml → del_csv → op_231
+  # ---------------------------------------------------------------------------
+  op_231: {}
+
+  # ---------------------------------------------------------------------------
+  # op_700 — DEM
+  # Ver listas en mapeos.yaml → forzadas → op_700_forzada
+  # ---------------------------------------------------------------------------
+  op_700: {}
+
+
+# =============================================================================
+# OPCIONES POR MUEBLE
+# =============================================================================
 
 muebles:
 
@@ -16,18 +117,18 @@ muebles:
 
   B308035:
     forzadas:
-      op_103: auto   # Sentido de la veta (segun gama)
-      op_104: auto   # Acabado canto frente (segun gama)
-      op_200: auto   # Color interior (del CSV)
-      op_203: "E14"  # Espesor canto mueble
-      op_204: auto   # Acabado canto mueble (igual que op_200)
-      op_206: "FSP"  # Sistema de cierre soft-motion
+      op_103: auto
+      op_104: auto
+      op_200: auto
+      op_203: "E14"
+      op_204: auto
+      op_206: "FSP"
     facultativas:
-      - op_121  # Sin mecanizado frente (SPF)
-      - op_217  # Apertura Touch Latch (TL1)
-      - op_223  # Cajon interior
-      - op_231  # Reduccion de ancho — PENDIENTE formato con IT SG
-      - op_700  # Mueble sin encolar (DEM)
+      - op_121
+      - op_217
+      - op_223
+      - op_231
+      - op_700
 
   B458035: &base_B_1puerta
     forzadas:
@@ -59,7 +160,6 @@ muebles:
       - op_121
       - op_223
       - op_700
-    # Sin op_217 ni op_231 — 2 puertas
 
   B308057:
     <<: *base_B_1puerta
@@ -70,7 +170,6 @@ muebles:
   B908057:
     <<: *base_B_2puertas
 
-  # BB2T — sin puerta batiente, sin cierre ni apertura
   BB2T458035: &base_BB2T
     forzadas:
       op_103: auto
@@ -78,7 +177,7 @@ muebles:
       op_200: auto
       op_203: "E14"
       op_204: auto
-      op_209: "BES"  # Equipamiento cajon/extraible
+      op_209: "BES"
     facultativas:
       - op_121
       - op_700
@@ -94,7 +193,6 @@ muebles:
   BB2T908057:
     <<: *base_BB2T
 
-  # B2B
   B2B458035: &base_B2B
     forzadas:
       op_103: auto
@@ -119,7 +217,6 @@ muebles:
   B2B908057:
     <<: *base_B2B
 
-  # BC 15cm — tirador fijo (499), sin cajon interior
   BC158057:
     forzadas:
       op_103: auto
@@ -128,11 +225,10 @@ muebles:
       op_203: "E14"
       op_204: auto
       op_209: "BES"
-      op_300: "499"  # Tirador fijo sin opciones
+      op_300: "499"
     facultativas:
       - op_700
 
-  # BC banco — PENDIENTE confirmar cajon interior con Jean
   BC604035: &base_BC_banco
     forzadas:
       op_103: auto
@@ -150,15 +246,14 @@ muebles:
     <<: *base_BC_banco
 
   # -----------------------------------------------
-  # MUEBLES BAJOS — COCCION
+  # MUEBLES BAJOS — COCCIÓN
   # -----------------------------------------------
 
-  # BFT — incluye op_126 (referencia electrodomestico obligatoria)
   BFT608057:
     forzadas:
       op_103: auto
       op_104: auto
-      op_126: auto   # Referencia electrodomestico — requerida por SG para validar pedido
+      op_126: auto
       op_200: auto
       op_203: "E14"
       op_204: auto
@@ -202,7 +297,7 @@ muebles:
       op_206: "FSP"
     facultativas:
       - op_121
-      - op_217  # TL1
+      - op_217
       - op_700
 
   BETO608057:
@@ -219,9 +314,7 @@ muebles:
     facultativas:
       - op_121
       - op_700
-    # Sin op_217 — 2 puertas
 
-  # BETOQ — op_207 PENDIENTE confirmar con Jean si debe ser forzada o facultativa
   BETOQ908057:
     forzadas:
       op_103: auto
@@ -230,9 +323,9 @@ muebles:
       op_203: "E14"
       op_204: auto
       op_206: "FSP"
+      op_207: "P42"   # PENDIENTE confirmar con Jean si forzada u obligatoria
     facultativas:
       - op_121
-      - op_207  # Equipamiento basura — PENDIENTE confirmar con Jean
       - op_700
 
   BE2B608057: &base_BE2B
@@ -242,10 +335,10 @@ muebles:
       op_200: auto
       op_203: "E14"
       op_204: auto
-      op_207: auto   # Equipamiento basura (P60 para 60cm, P90 para 90cm)
       op_209: "BES"
     facultativas:
       - op_121
+      - op_207
       - op_700
 
   BE2B908057:
@@ -259,8 +352,6 @@ muebles:
   # LAVAVAJILLAS / LAVADORA
   # -----------------------------------------------
 
-  # POBIF — sin carcasa, sin op_200/203/204/206
-  # PENDIENTE confirmar con SG si op_700 y op_402 tienen sentido sin mueble
   POBIF4580: &base_POBIF
     forzadas:
       op_103: auto
@@ -280,7 +371,6 @@ muebles:
   PO1BIF6080:
     <<: *base_POBIF
 
-  # FHABS — op_203, op_204 y op_301 PENDIENTES de confirmar con SG
   FHABS6580:
     forzadas:
       op_103: auto
@@ -305,7 +395,7 @@ muebles:
       op_206: "FSP"
     facultativas:
       - op_121
-      - op_217  # TL1
+      - op_217
       - op_700
 
   BAV1208057:
@@ -319,7 +409,7 @@ muebles:
       op_203: "E14"
       op_204: auto
       op_206: "FSP"
-      op_208: "CPA"  # Equipamiento Lemans — forzado
+      op_208: "CPA"
     facultativas:
       - op_121
       - op_217
@@ -331,8 +421,6 @@ muebles:
   # -----------------------------------------------
   # MUEBLES DE PARED — ALMACENAMIENTO
   # -----------------------------------------------
-  # Sin op_402 (muebles suspendidos)
-  # op_217 = PS1 (Prise de main) para murales
 
   H1306035: &base_H1_1puerta
     forzadas:
@@ -344,11 +432,11 @@ muebles:
       op_206: "FSP"
     facultativas:
       - op_121
-      - op_217  # PS1
-      - op_220  # Recorte LED
-      - op_222  # Fondo iluminado
-      - op_227  # Mueble de caldera
-      - op_231  # Reduccion de ancho
+      - op_217
+      - op_220
+      - op_222
+      - op_227
+      - op_231
       - op_700
 
   H1456035:
@@ -382,7 +470,6 @@ muebles:
       - op_220
       - op_222
       - op_700
-    # Sin op_227 ni op_231 — 2 puertas
 
   H1908035:
     <<: *base_H1_2puertas
@@ -392,8 +479,6 @@ muebles:
   # -----------------------------------------------
   # MUEBLES DE PARED — CAMPANA
   # -----------------------------------------------
-  # op_700 FORZADA (DEM) — unico caso donde DEM no es facultativo
-  # Sin op_217 ni op_402
 
   HH1606035: &base_HH1
     forzadas:
@@ -403,7 +488,7 @@ muebles:
       op_203: "E14"
       op_204: auto
       op_206: "FSP"
-      op_700: "DEM"  # Siempre sin encolar
+      op_700: "DEM"
     facultativas:
       - op_121
 
@@ -432,7 +517,7 @@ muebles:
       op_206: "FSP"
     facultativas:
       - op_121
-      - op_217  # PS1
+      - op_217
       - op_700
 
   HAV1908035:
@@ -460,7 +545,7 @@ muebles:
       op_206: "FSP"
     facultativas:
       - op_121
-      - op_217  # TL1
+      - op_217
       - op_700
 
   HR60V35:
@@ -470,7 +555,6 @@ muebles:
   HR60V57:
     <<: *base_HR
 
-  # HLVV57 — apertura lift, sin op_206
   HLVV57:
     forzadas:
       op_103: auto
@@ -480,7 +564,7 @@ muebles:
       op_204: auto
     facultativas:
       - op_121
-      - op_217  # TL1
+      - op_217
       - op_700
 
   HPT60V57:
@@ -575,7 +659,6 @@ muebles:
   AVA1P6022057:
     <<: *base_AVA
 
-  # AVA1P 900mm — 2 puertas contiguas, sin op_217/227/231
   AVA1P9020035: &base_AVA1P_900
     forzadas:
       op_103: auto
@@ -612,13 +695,12 @@ muebles:
   # -----------------------------------------------
   # COLUMNAS — HORNO / MICRO
   # -----------------------------------------------
-  # Incluyen op_126 (referencia electrodomestico obligatoria)
 
   AFS6020057: &base_AFS
     forzadas:
       op_103: auto
       op_104: auto
-      op_126: auto   # Referencia electrodomestico
+      op_126: auto
       op_200: auto
       op_203: "E14"
       op_204: auto
@@ -626,7 +708,7 @@ muebles:
     facultativas:
       - op_121
       - op_217
-      - op_223  # Cajon interior
+      - op_223
       - op_700
 
   AFS6022057:
@@ -640,7 +722,6 @@ muebles:
   AFS2B6022057:
     <<: *base_AFS
 
-  # AFSMOBT — sin op_223
   AFSMOBT6020057: &base_AFSMOBT
     forzadas:
       op_103: auto
@@ -659,9 +740,8 @@ muebles:
     <<: *base_AFSMOBT
 
   # -----------------------------------------------
-  # COLUMNAS — FRIGORIFICO
+  # COLUMNAS — FRIGORÍFICO
   # -----------------------------------------------
-  # Sin op_206, op_217 ni op_223
 
   A2I6020057: &base_A2I
     forzadas:
@@ -686,7 +766,6 @@ muebles:
   # -----------------------------------------------
   # COLUMNAS — DESPENSA
   # -----------------------------------------------
-  # AGM — unico mueble sin op_700
 
   AGM9020057: &base_AGM
     forzadas:
